@@ -15,11 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    AddDataComponent,
-    DataComponent,
-    HeaderComponent,
     
+    
+    HeaderComponent,
     PaginationPipe
   ],
   imports: [
@@ -29,7 +27,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     ButtonComponent,
-    BrowserAnimationsModule
+    DataComponent,
+    AddDataComponent,
+    BrowserAnimationsModule,
+    DashboardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

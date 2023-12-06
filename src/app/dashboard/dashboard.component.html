@@ -1,7 +1,7 @@
-<app-data [currentPage]="currentPage" (selectPageEvent)="receiveMessage($event)"></app-data>
+<app-data [pageVars]="pageVars" (selectPageEvent)="receiveMessage($event)"></app-data>
 <br>
 
 <app-button [formVisibility]="formVisibility" (openFormButtonClickedEvent)="toggleAddDataVisibility()"></app-button>
-
-<app-add-data [currentPage]="currentPage" [ngStyle]="{'visibility': formVisibility}"></app-add-data>
+<mat-divider></mat-divider>
+<app-add-data [pageVars]="pageVars" [ngStyle]="{'visibility': formVisibility}"></app-add-data>
 
