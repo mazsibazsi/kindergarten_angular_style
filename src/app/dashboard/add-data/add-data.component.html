@@ -3,9 +3,12 @@
         <h2>Ihr Kind anmelden!</h2>
         <mat-form-field>
             <input matInput placeholder="Name" type="input" formControlName="name"><br />
+            <mat-error>Name fehlt!</mat-error>
+            
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Geburtsdatum" type="date" formControlName="birthDate"><br />
+            <mat-error>Geburtsdatum muss angegeben werden!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -14,7 +17,8 @@
                 <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">{{kindergarden.name}}</mat-option>
                 
             </mat-select>
+            <mat-error>Ein Kindergarten muss ausgewählt werden!</mat-error>
         </mat-form-field>
-        <button mat-button type="submit">Erfassen</button>
+        <button mat-raised-button color="primary" type="submit">Erfassen</button>
     
 </form>

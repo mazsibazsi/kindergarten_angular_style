@@ -1,0 +1,18 @@
+.mat-toolbar {
+    background-image: url("./../../assets/images/kindergarden.jpg");
+    background-size: 300px 100px;
+    background-blend-mode: soft-light;
+}
+
+.opaque {
+    color: #FFFFFF00;
+    background-color: #FFFFFF00;
+}
+
+.title {
+    font-size: 1.3em;
+    font-style: italic;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Pacifico', cursive; /* You can replace 'Pacifico' with your preferred font */
+}
