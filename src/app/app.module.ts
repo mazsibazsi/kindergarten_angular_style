@@ -11,14 +11,17 @@ import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './dashboard/button/button.component';
 import { PaginationPipe } from './dashboard/data/pagination.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
     
     
-    
-    PaginationPipe
+    LoadingSpinnerComponent,
+    PaginationPipe,
+                   
   ],
   imports: [
     HeaderComponent,
@@ -31,7 +34,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DataComponent,
     AddDataComponent,
     BrowserAnimationsModule,
-    DashboardComponent
+    DashboardComponent,
+    MatProgressSpinnerModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

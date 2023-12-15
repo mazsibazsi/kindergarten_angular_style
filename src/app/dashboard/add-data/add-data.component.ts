@@ -33,6 +33,7 @@ export class AddDataComponent implements OnInit{
 
   onSubmit() {
     if (this.addChildForm.valid) {
+      this.storeService.isLoading = true;
       console.log(this.pageVars);
       this.backendService.addChildData(this.addChildForm.value, this.pageVars);
       this.snackBar.open("✅ Anmeldung erfolgreich!", "Schließen")

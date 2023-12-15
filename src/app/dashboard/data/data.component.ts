@@ -43,6 +43,7 @@ export class DataComponent implements OnInit {
   }
 
   selectPage(event: any) {
+    this.storeService.isLoading = true;
     console.log(event);
     let currentPage = event.pageIndex+1;
     this.pageVars[1] = event.pageSize;
@@ -60,7 +61,9 @@ export class DataComponent implements OnInit {
   }
 
   public cancelRegistration(childId: string) {
+    this.storeService.isLoading = true;
     this.backendService.deleteChildData(childId, this.pageVars);
+    
   }
 }
 

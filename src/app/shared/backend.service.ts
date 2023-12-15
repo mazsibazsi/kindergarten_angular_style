@@ -22,7 +22,7 @@ export class BackendService {
     this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${pageVars[0]}&_limit=${pageVars[1]}`, { observe: 'response' }).subscribe(data => {
       this.storeService.children = data.body!;
       this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
-
+      this.storeService.isLoading = false;
     });
     }
 
