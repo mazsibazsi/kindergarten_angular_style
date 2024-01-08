@@ -1,13 +1,25 @@
-<table mat-table [dataSource]="storeService.children">
+<table mat-table [dataSource]="this.storeService.children" matSort #kgTbSort="matSort">
 
     <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
+        
+        <th mat-header-cell *matHeaderCellDef> 
+            <mat-checkbox (click)="selectSortByName($event)">Name</mat-checkbox>  </th>
         <td mat-cell *matCellDef="let child"> {{child.name}} </td>
     </ng-container>
     
     <ng-container matColumnDef="kgName">
-        <th mat-header-cell *matHeaderCellDef> Kindergarten </th>
+        <th mat-header-cell *matHeaderCellDef>         
+            <mat-form-field class="kg-header-select">
+                <mat-label>Kindergarten</mat-label>
+                <mat-select (valueChange)="selectKgFilter($event)">
+                        <mat-option value="-1">All</mat-option>
+                        <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">{{kindergarden.name}}</mat-option>
+                </mat-select>
+            </mat-form-field> 
+        </th>
         <td mat-cell *matCellDef="let child"> {{child.kindergarden.name}} </td>
+
+
     </ng-container>
 
     <ng-container matColumnDef="kgAddress">
@@ -23,6 +35,13 @@
     <ng-container matColumnDef="birthDate">
         <th mat-header-cell *matHeaderCellDef> Birthdate </th>
         <td mat-cell *matCellDef="let child"> {{child.birthDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="signUpDate">
+        <th mat-header-cell *matHeaderCellDef> 
+                <mat-checkbox (click)="selectSortBySignUpDate($event)">Sign Up Date</mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let child"> {{child.signUpDate}} </td>
     </ng-container>
 
     <ng-container matColumnDef="removeAction">

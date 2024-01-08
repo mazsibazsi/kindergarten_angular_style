@@ -1,0 +1,16 @@
+
+  <div class="container">
+    <div *ngFor="let kindergarten of store.kindergardens" class="kindergarten-card" >
+      <mat-card>
+        <img mat-card-image src="{{kindergarten.image}}" alt="{{ kindergarten.name }} Image" class="kindergarten-image">
+        <mat-card-header>
+          <mat-card-title>{{ kindergarten.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>Address:</strong> {{ kindergarten.address }}</p>
+          <p><strong>Betreiber:</strong> {{ kindergarten.betreiber }}</p>
+          <p><strong>Description:</strong> {{ kindergarten.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

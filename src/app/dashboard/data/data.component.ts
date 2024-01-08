@@ -1,18 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-data',
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.scss'],
   standalone: true,
-  imports: [MatPaginatorModule, CommonModule, MatDividerModule, MatTableModule, MatButtonModule]
+  imports: [MatPaginatorModule, CommonModule, MatDividerModule, MatTableModule, MatButtonModule, MatSelectModule, MatSortModule, MatCheckboxModule]
 })
 export class DataComponent implements OnInit {
 
@@ -20,16 +23,39 @@ export class DataComponent implements OnInit {
 
   @Input() pageVars!: [number, number];
   @Output() selectPageEvent = new EventEmitter<number>();
-  
+  @ViewChild('kgTbSort') empTbSort = new MatSort();
+
   public page: number = 0;
   public pageSize = 5;
+  public kgFilter = -1;
+  public sortByName = false;
+  public sortBySignUpDate = false;
 
-  public columnsNames: string[] = ['name', 'kgName', 'kgAddress', 'age', 'birthDate', 'removeAction'];
+  public columnsNames: string[] = ['name', 'kgName', 'kgAddress', 'age', 'birthDate', 'signUpDate', 'removeAction'];
 
   ngOnInit(): void {
+    
     this.backendService.getChildren(this.pageVars);
+
   }
   
+  selectKgFilter(event: any): void {
+    this.kgFilter = event;
+    this.storeService.isLoading = true;
+    this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
+  }
+
+  selectSortByName(event: any): void {
+    this.storeService.isLoading = true;
+    this.sortByName = !this.sortByName;
+    this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
+  }
+
+  selectSortBySignUpDate(event: any): void {
+    this.storeService.isLoading = true;
+    this.sortBySignUpDate = !this.sortBySignUpDate;
+    this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
+  }
 
   getAge(birthDate: string) {
     const today = new Date();
@@ -48,7 +74,7 @@ export class DataComponent implements OnInit {
     let currentPage = event.pageIndex+1;
     this.pageVars[1] = event.pageSize;
     this.selectPageEvent.emit(currentPage)
-    this.backendService.getChildren(this.pageVars);
+    this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
     
   }
 

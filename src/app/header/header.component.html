@@ -1,5 +1,18 @@
 <mat-toolbar>
-    <span class="title">{{ title }}</span>&nbsp;&nbsp;
-    <button mat-button [routerLink]="['/dashboard']">Dashboard</button>&nbsp;&nbsp;
-    <button mat-button [routerLink]="['/about']">About</button>
+    <div>    
+        <span class="title">{{ title }}</span>
+    </div>
+    <div class="padder">
+    </div>
+    <div class="menu">
+        <button mat-icon-button [color]="window.location.pathname == '/dashboard' || window.location.pathname == '/' ? 'primary' : 'null'" [routerLink]="['/dashboard']">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button mat-icon-button [color]="window.location.pathname == '/kg-list' ? 'primary' : 'null'" [routerLink]="['/kg-list']">
+            <mat-icon>list</mat-icon>
+        </button>
+        <button mat-icon-button [color]="window.location.pathname == '/about' ? 'primary' : 'null'" [routerLink]="['/about']">
+            <mat-icon>help outline icon</mat-icon>
+        </button>
+    </div>
 </mat-toolbar>

@@ -13,6 +13,7 @@ import { PaginationPipe } from './dashboard/data/pagination.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { KgListComponent } from './kg-list/kg-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     
     LoadingSpinnerComponent,
     PaginationPipe,
+    
                    
   ],
   imports: [
@@ -35,8 +37,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AddDataComponent,
     BrowserAnimationsModule,
     DashboardComponent,
-    MatProgressSpinnerModule
-    
+    MatProgressSpinnerModule,
+    KgListComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

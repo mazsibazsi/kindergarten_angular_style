@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,10 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatToolbarModule, RouterModule, MatButtonModule],
+  providers: [
+    { provide: Window, useValue: window }
+  ],
+  imports: [ReactiveFormsModule, CommonModule, MatToolbarModule, RouterModule, MatButtonModule, MatIconModule],
 })
 export class HeaderComponent implements OnInit {
 
@@ -20,9 +23,10 @@ export class HeaderComponent implements OnInit {
   public imagePath: string = "./../assets/images/kindergarden.jpg";
 
 
-  constructor() { }
+  constructor(public window: Window) { }
 
   ngOnInit(): void {
+    
   }
 
 }
