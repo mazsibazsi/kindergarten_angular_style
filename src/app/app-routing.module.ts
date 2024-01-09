@@ -5,10 +5,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { KgListComponent } from './kg-list/kg-list.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'kg-list', component: KgListComponent },
-  { path: 'about', component: AboutPageComponent }
+  { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
+  { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
+  { path: 'kg-list', component: KgListComponent, data: { title: 'Kindergarten List' } },
+  { path: 'about', component: AboutPageComponent, data: { title: 'About Us' } }
 ];
 
 @NgModule({

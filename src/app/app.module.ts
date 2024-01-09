@@ -18,12 +18,8 @@ import { KgListComponent } from './kg-list/kg-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
-    
     LoadingSpinnerComponent,
     PaginationPipe,
-    
-                   
   ],
   imports: [
     HeaderComponent,
