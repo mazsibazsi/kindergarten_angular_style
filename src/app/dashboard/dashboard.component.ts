@@ -19,11 +19,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class DashboardComponent {
 
-  constructor(public store: StoreService) {}
+  constructor(public store: StoreService,) {}
 
   public pageVars: [number, number] =  [1, 5];
   
-  public formVisibility: string = "visible";
+  public formVisibility: string = "hidden";
 
   public receiveMessage(newPageCount: number): void {
     this.pageVars[0] = newPageCount;

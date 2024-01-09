@@ -19,8 +19,10 @@ export class BackendService {
     });
   }
 
-  public getChildren(pageVars: [number, number], sortByName = false, kindergardenId = -1, sortBySignUpDate = false ) {
-    this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${pageVars[0]}&_limit=${pageVars[1]}${sortBySignUpDate ? '&_sort=signUpDate' : ''}${sortByName && sortBySignUpDate ? ',name' : sortByName ? '&_sort=name' : ''}${kindergardenId != -1 ? '&kindergardenId='+kindergardenId : ''}`, { observe: 'response' }).subscribe(data => {
+  public getChildren(pageVars: [number, number], sortByName: [boolean, boolean] = [false, false], kindergardenId = -1, sortBySignUpDate: [boolean, boolean] = [false, false] ) {
+    this.http.get<ChildResponse[]>
+    (`http://localhost:5000/childs?_expand=kindergarden&_page=${pageVars[0]}&_limit=${pageVars[1]}${sortBySignUpDate[0] ? '&_sort=signUpDate' : ''}${sortByName[0] && sortBySignUpDate[0] ? ',name' : sortByName[0] ? '&_sort=name' : ''}${sortBySignUpDate[1] ? '&_order=desc' : ''}${sortByName[1] && sortBySignUpDate[1] ? ',desc' : sortByName[1] ? '&_order=desc' : ''}${kindergardenId != -1 ? '&kindergardenId='+kindergardenId : ''}`, { observe: 'response' })
+    .subscribe(data => {
       this.storeService.children = data.body!;
       this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
       this.storeService.isLoading = false;

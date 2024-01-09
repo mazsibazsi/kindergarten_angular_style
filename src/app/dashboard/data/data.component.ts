@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DATE_LOCALE } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-data',
@@ -28,8 +29,10 @@ export class DataComponent implements OnInit {
   public page: number = 0;
   public pageSize = 5;
   public kgFilter = -1;
-  public sortByName = false;
-  public sortBySignUpDate = false;
+  public sortByName: [boolean, boolean] = [false, false];
+  public sortBySignUpDate: [boolean, boolean] = [false, false];
+  public tableName = 'Name *';
+  public tableSignUpDate = 'Sign Up Date *';
 
   public columnsNames: string[] = ['name', 'kgName', 'kgAddress', 'age', 'birthDate', 'signUpDate', 'removeAction'];
 
@@ -47,13 +50,33 @@ export class DataComponent implements OnInit {
 
   selectSortByName(event: any): void {
     this.storeService.isLoading = true;
-    this.sortByName = !this.sortByName;
+    if (this.tableName == 'Name *') {
+      this.tableName = 'Name ↓';
+      this.sortByName = [true, false];
+    }
+    else if (this.tableName == 'Name ↓') {
+      this.tableName = 'Name ↑';
+      this.sortByName = [true, true];
+    } else {
+      this.tableName = 'Name *'
+      this.sortByName = [false, false];
+    }
     this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
   }
 
   selectSortBySignUpDate(event: any): void {
     this.storeService.isLoading = true;
-    this.sortBySignUpDate = !this.sortBySignUpDate;
+    if (this.tableSignUpDate == 'Sign Up Date *') {
+      this.tableSignUpDate = 'Sign Up Date ↓';
+      this.sortBySignUpDate = [true, false];
+    }
+    else if (this.tableSignUpDate == 'Sign Up Date ↓') {
+      this.tableSignUpDate = 'Sign Up Date ↑';
+      this.sortBySignUpDate = [true, true];
+    } else {
+      this.tableSignUpDate = 'Sign Up Date *'
+      this.sortBySignUpDate = [false, false];
+    }
     this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
   }
 
@@ -76,6 +99,11 @@ export class DataComponent implements OnInit {
     this.selectPageEvent.emit(currentPage)
     this.backendService.getChildren(this.pageVars, this.sortByName, this.kgFilter, this.sortBySignUpDate);
     
+  }
+
+  public formatDate(date: string): string {
+    let formatted = new Date(date);
+    return formatted.toLocaleDateString(DATE_LOCALE);
   }
 
   public numberOfPages(): number {

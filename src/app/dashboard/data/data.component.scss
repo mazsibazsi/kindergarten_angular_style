@@ -6,3 +6,15 @@ button.active {
     padding-top: 15px;
     width: 50vw;
 }
+
+.mat-mdc-row {
+    background-color: #eee;
+  }
+  
+.mat-mdc-row:nth-child(2n-1), .mat-row:nth-child(2n) {
+background-color: #ffffff;
+}
+  
+.btbg {
+    background-color: #e8d1d1;
+}
